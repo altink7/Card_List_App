@@ -7,30 +7,38 @@
 
 import Foundation
 
-import Foundation
-
 struct Response<T: Codable>: Codable {
-    let cards: [T]
+    let data: [T]
 }
 
 struct Card: Codable, Identifiable, Hashable {
-    let multiverseid: String? //id
-    let name: String? //title
-    let text: String? //description
-    let imageUrl: String?//url
-    let type: String? //extra Field von HW2
-    let colors: [String] //extra Field von HW2
-    
-    var id: String {
-            return multiverseid ?? "" 
+    let id: String
+    let name: String?
+    let oracleText: String?
+    let imageUris: [String: String]?
+
+    enum CodingKeys: String, CodingKey {
+        case id
+        case name
+        case oracleText
+        case imageUris
+    }
+
+    var imageUrl: String? {
+        if let imageUris = imageUris {
+            return imageUris["normal"] ?? imageUris["large"] ?? imageUris["small"]
         }
-    
+        return nil
+    }
+
     func hash(into hasher: inout Hasher) {
-           hasher.combine(multiverseid)
-       }
-       
-       static func ==(lhs: Card, rhs: Card) -> Bool {
-           return lhs.multiverseid == rhs.multiverseid
-       }
+        hasher.combine(id)
+    }
+
+    static func ==(lhs: Card, rhs: Card) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
+
+
 

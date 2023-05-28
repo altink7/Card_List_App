@@ -18,6 +18,7 @@
 		0D8B09EE2A18B6DA007088DA /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09ED2A18B6DA007088DA /* ItemViewModel.swift */; };
 		0D8B09F12A18B720007088DA /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09F02A18B720007088DA /* ItemListView.swift */; };
 		0D8B09F32A18B742007088DA /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09F22A18B742007088DA /* ItemDetailView.swift */; };
+		CE16BD452A1E7A0500488C24 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE16BD442A1E7A0500488C24 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		0D8B09ED2A18B6DA007088DA /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		0D8B09F02A18B720007088DA /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		0D8B09F22A18B742007088DA /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		CE16BD442A1E7A0500488C24 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +104,7 @@
 		0D8B09BE2A18B405007088DA /* 03_kelmendi */ = {
 			isa = PBXGroup;
 			children = (
+				CE16BD442A1E7A0500488C24 /* Settings.bundle */,
 				0D8B09EF2A18B709007088DA /* view */,
 				0D8B09EC2A18B6BE007088DA /* viewmodel */,
 				0D8B09E92A18B684007088DA /* model */,
@@ -268,6 +271,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D8B09C72A18B40A007088DA /* Preview Assets.xcassets in Resources */,
+				CE16BD452A1E7A0500488C24 /* Settings.bundle in Resources */,
 				0D8B09C42A18B40A007088DA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -385,7 +389,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -439,7 +443,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

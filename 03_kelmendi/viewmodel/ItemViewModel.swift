@@ -13,39 +13,46 @@ class ItemViewModel: ObservableObject {
     @Published var isLoading = false
     @Published var errorMessage = ""
 
-    func fetchData() {
+    private var apiURL: String {
+        return UserDefaults.standard.string(forKey: "APIURL") ?? "https://api.scryfall.com/cards/search?order=cmc&q=c%3Ared+pow%3D8"
+    }
+
+    func fetchData(url: URL? = nil) {
         cards = []
         isLoading = true
         errorMessage = ""
 
-        let url = URL(string: "https://api.magicthegathering.io/v1/cards?page=2")!
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        let url = url ?? URL(string: apiURL)!
+        URLSession.shared.dataTask(with: url) { [weak self] (data, response, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async {
-                    self.errorMessage = error?.localizedDescription ?? "Unknown error"
-                    self.isLoading = false
+                    self?.errorMessage = error?.localizedDescription ?? "Unknown error"
+                    self?.isLoading = false
                 }
                 return
             }
 
-            self.parse(jsonData: data)
+            self?.parse(jsonData: data)
         }.resume()
     }
 
     private func parse(jsonData: Data) {
         do {
             let decoder = JSONDecoder()
+            decoder.keyDecodingStrategy = .convertFromSnakeCase
+            decoder.dateDecodingStrategy = .iso8601
+
             let response = try decoder.decode(Response<Card>.self, from: jsonData)
-            
+            let validCards = response.data.filter { $0.name != nil }
+
             DispatchQueue.main.async {
-                if response.cards.isEmpty {
-                    self.fetchData()
+                if validCards.isEmpty {
+                    self.errorMessage = "No valid cards found."
                 } else {
-                    self.cards = response.cards.sorted { ($0.name ?? "") < ($1.name ?? "") }
+                    self.cards = validCards.sorted { ($0.name ?? "") < ($1.name ?? "") }
                 }
                 self.isLoading = false
             }
-
         } catch let error {
             DispatchQueue.main.async {
                 self.errorMessage = error.localizedDescription
@@ -55,5 +62,8 @@ class ItemViewModel: ObservableObject {
             print(String(data: jsonData, encoding: .utf8) ?? "No data received")
         }
     }
+
+
 }
+
 
