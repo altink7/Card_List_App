@@ -8,9 +8,15 @@
 import SwiftUI
 
 struct ContentView: View {
+    @StateObject private var viewModel = ItemViewModel()
+
     var body: some View {
         NavigationView {
             ItemListView()
+                .environmentObject(viewModel)
+        }
+        .onAppear {
+            viewModel.fetchData()
         }
     }
 }

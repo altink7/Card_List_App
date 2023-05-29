@@ -5,13 +5,13 @@
 //  Created by Altin Kelmendi on 20.05.23.
 //
 
-import SwiftUI;
+import SwiftUI
 
 struct ItemDetailView: View {
     let card: Card
     @AppStorage("ShowImages") private var showImages: Bool = false
     @State private var cardImage: UIImage?
-    
+
     var body: some View {
         VStack {
             if let imageURL = card.imageUrl,
@@ -27,14 +27,14 @@ struct ItemDetailView: View {
                             .aspectRatio(contentMode: .fill)
                             .foregroundColor(.gray)
                     }
-                    
+
                     VStack(alignment: .leading, spacing: 8) {
                         Text(card.name ?? "no name")
                             .font(.title)
                             .fontWeight(.bold)
                             .foregroundColor(.white)
-                        
-                        Text(card.id)
+
+                        Text(card.id ?? "no id")
                             .font(.subheadline)
                             .foregroundColor(.white)
                     }
@@ -43,16 +43,16 @@ struct ItemDetailView: View {
                 }
                 .frame(maxHeight: 200)
             }
-            
+
             Text("").padding()
             Text("").padding()
             Text("").padding()
-        
+
             Text(card.oracleText ?? "")
                 .multilineTextAlignment(.center)
                 .padding(.horizontal)
                 .padding(.top, 16)
-            
+
             Button(action: {
                 if let imageURL = card.imageUrl,
                    let url = URL(string: imageURL) {
@@ -71,13 +71,13 @@ struct ItemDetailView: View {
             loadImage()
         }
     }
-    
+
     func loadImage() {
         guard let imageURLString = card.imageUrl,
               let imageURL = URL(string: imageURLString) else {
             return
         }
-        
+
         URLSession.shared.dataTask(with: imageURL) { data, response, error in
             if let data = data, let image = UIImage(data: data) {
                 DispatchQueue.main.async {

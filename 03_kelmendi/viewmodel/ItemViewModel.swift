@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftUI
+import CoreData
 
 class ItemViewModel: ObservableObject {
     @Published var cards: [Card] = []
@@ -15,6 +16,12 @@ class ItemViewModel: ObservableObject {
 
     private var apiURL: String {
         return UserDefaults.standard.string(forKey: "APIURL") ?? "https://api.scryfall.com/cards/search?order=cmc&q=c%3Ared+pow%3D8"
+    }
+
+    private let dataHandler: DataHandler
+
+    init(dataHandler: DataHandler = DataHandler.shared) {
+        self.dataHandler = dataHandler
     }
 
     func fetchData(url: URL? = nil) {
@@ -42,14 +49,32 @@ class ItemViewModel: ObservableObject {
             decoder.keyDecodingStrategy = .convertFromSnakeCase
             decoder.dateDecodingStrategy = .iso8601
 
-            let response = try decoder.decode(Response<Card>.self, from: jsonData)
-            let validCards = response.data.filter { $0.name != nil }
+            let response = try decoder.decode(Response<CardInfo>.self, from: jsonData)
+            let cardInfos = response.data
+
+            let context = DataHandler.shared.persistentContainer.viewContext
+
+            var cards: [Card] = []
+            for cardInfo in cardInfos {
+                let card = Card(context: context)
+                card.id = cardInfo.id
+
+                if let imageUris = cardInfo.imageUris, let imageUrl = imageUris["normal"] {
+                    card.imageUrl = imageUrl
+                }
+
+                card.name = cardInfo.name
+                card.oracleText = cardInfo.oracleText
+                cards.append(card)
+            }
+
+            try context.save()
 
             DispatchQueue.main.async {
-                if validCards.isEmpty {
+                if cards.isEmpty {
                     self.errorMessage = "No valid cards found."
                 } else {
-                    self.cards = validCards.sorted { ($0.name ?? "") < ($1.name ?? "") }
+                    self.cards = cards.sorted { ($0.name ?? "") < ($1.name ?? "") }
                 }
                 self.isLoading = false
             }
@@ -62,8 +87,7 @@ class ItemViewModel: ObservableObject {
             print(String(data: jsonData, encoding: .utf8) ?? "No data received")
         }
     }
-
-
 }
+
 
 

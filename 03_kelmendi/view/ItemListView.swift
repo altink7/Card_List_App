@@ -10,13 +10,14 @@ import SwiftUI
 struct ItemListView: View {
     @ObservedObject var viewModel = ItemViewModel()
     @AppStorage("ShowImages") private var showImages: Bool = false
-    @State private var cardImages: [String: UIImage] = [:]
     @State private var isURLValid = true
 
     var body: some View {
         VStack {
             if !viewModel.errorMessage.isEmpty {
                 Text("The URL could not be opened, please try again later")
+                    .foregroundColor(.red)
+                Text(viewModel.errorMessage)
                     .foregroundColor(.red)
                     .padding()
             }
@@ -33,24 +34,22 @@ struct ItemListView: View {
             List(Array(Set(viewModel.cards)).sorted { $0.name ?? "" < $1.name ?? "" }) { card in
                 NavigationLink(destination: ItemDetailView(card: card)) {
                     HStack {
-                        if showImages,
-                           let image = cardImages[card.id] {
-                            Image(uiImage: image)
-                                .resizable()
-                                .frame(width: 80, height: 80)
-                        } else if showImages {
-                            Image(systemName: "photo")
-                                .resizable()
-                                .frame(width: 40, height: 40)
-                                .foregroundColor(.gray)
+                        if showImages {
+                            AsyncImage(url: URL(string: card.imageUrl ?? "")) { image in
+                                image
+                                    .resizable()
+                                    .frame(width: 80, height: 80)
+                            } placeholder: {
+                                Image(systemName: "photo")
+                                    .resizable()
+                                    .frame(width: 40, height: 40)
+                                    .foregroundColor(.gray)
+                            }
                         }
                         Text(card.name ?? "")
                             .fontWeight(card == viewModel.cards.first ? .bold : .regular)
                     }
                     .padding()
-                }
-                .onAppear {
-                    loadImage(for: card)
                 }
                 .listStyle(PlainListStyle())
                 .navigationBarTitle("03_kelmendi", displayMode: .inline)
@@ -68,21 +67,6 @@ struct ItemListView: View {
         }
     }
 
-    func loadImage(for card: Card) {
-        guard let imageURLString = card.imageUrl,
-              let imageURL = URL(string: imageURLString) else {
-            return
-        }
-        
-        URLSession.shared.dataTask(with: imageURL) { data, response, error in
-            if let data = data, let image = UIImage(data: data) {
-                DispatchQueue.main.async {
-                    cardImages[card.id] = image
-                }
-            }
-        }.resume()
-    }
-
     func reloadItemsIfNeeded() {
         if let savedURLString = UserDefaults.standard.string(forKey: "APIURL"),
            !savedURLString.trimmingCharacters(in: .whitespaces).isEmpty,
@@ -94,7 +78,5 @@ struct ItemListView: View {
             viewModel.fetchData(url: standardURL)
         }
     }
-
-
- }
+}
 

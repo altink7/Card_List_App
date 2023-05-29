@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D0AA39A2A236AF200E9FDED /* ItemModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 0D0AA3982A236AF200E9FDED /* ItemModel.xcdatamodeld */; };
 		0D8B09C02A18B405007088DA /* _3_kelmendiApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09BF2A18B405007088DA /* _3_kelmendiApp.swift */; };
 		0D8B09C22A18B405007088DA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09C12A18B405007088DA /* ContentView.swift */; };
 		0D8B09C42A18B40A007088DA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D8B09C32A18B40A007088DA /* Assets.xcassets */; };
@@ -14,10 +15,11 @@
 		0D8B09D12A18B40B007088DA /* _3_kelmendiTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09D02A18B40B007088DA /* _3_kelmendiTests.swift */; };
 		0D8B09DB2A18B40B007088DA /* _3_kelmendiUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09DA2A18B40B007088DA /* _3_kelmendiUITests.swift */; };
 		0D8B09DD2A18B40B007088DA /* _3_kelmendiUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09DC2A18B40B007088DA /* _3_kelmendiUITestsLaunchTests.swift */; };
-		0D8B09EB2A18B695007088DA /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09EA2A18B695007088DA /* Item.swift */; };
 		0D8B09EE2A18B6DA007088DA /* ItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09ED2A18B6DA007088DA /* ItemViewModel.swift */; };
 		0D8B09F12A18B720007088DA /* ItemListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09F02A18B720007088DA /* ItemListView.swift */; };
 		0D8B09F32A18B742007088DA /* ItemDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8B09F22A18B742007088DA /* ItemDetailView.swift */; };
+		0D9123272A23A7FD00C17609 /* DataHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9123262A23A7FD00C17609 /* DataHandler.swift */; };
+		0D9123292A24AA1E00C17609 /* CardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D9123282A24AA1E00C17609 /* CardInfo.swift */; };
 		CE16BD452A1E7A0500488C24 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = CE16BD442A1E7A0500488C24 /* Settings.bundle */; };
 /* End PBXBuildFile section */
 
@@ -39,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0D0AA3992A236AF200E9FDED /* ItemModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemModel.xcdatamodel; sourceTree = "<group>"; };
 		0D8B09BC2A18B405007088DA /* 03_kelmendi.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = 03_kelmendi.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8B09BF2A18B405007088DA /* _3_kelmendiApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _3_kelmendiApp.swift; sourceTree = "<group>"; };
 		0D8B09C12A18B405007088DA /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -49,10 +52,11 @@
 		0D8B09D62A18B40B007088DA /* 03_kelmendiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = 03_kelmendiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8B09DA2A18B40B007088DA /* _3_kelmendiUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _3_kelmendiUITests.swift; sourceTree = "<group>"; };
 		0D8B09DC2A18B40B007088DA /* _3_kelmendiUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = _3_kelmendiUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		0D8B09EA2A18B695007088DA /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		0D8B09ED2A18B6DA007088DA /* ItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemViewModel.swift; sourceTree = "<group>"; };
 		0D8B09F02A18B720007088DA /* ItemListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListView.swift; sourceTree = "<group>"; };
 		0D8B09F22A18B742007088DA /* ItemDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailView.swift; sourceTree = "<group>"; };
+		0D9123262A23A7FD00C17609 /* DataHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DataHandler.swift; path = 03_kelmendi/DataHandler.swift; sourceTree = SOURCE_ROOT; };
+		0D9123282A24AA1E00C17609 /* CardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardInfo.swift; sourceTree = "<group>"; };
 		CE16BD442A1E7A0500488C24 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -81,6 +85,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D0AA39B2A236F6500E9FDED /* data */ = {
+			isa = PBXGroup;
+			children = (
+				0D9123262A23A7FD00C17609 /* DataHandler.swift */,
+			);
+			path = data;
+			sourceTree = "<group>";
+		};
 		0D8B09B32A18B405007088DA = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +116,7 @@
 		0D8B09BE2A18B405007088DA /* 03_kelmendi */ = {
 			isa = PBXGroup;
 			children = (
+				0D0AA39B2A236F6500E9FDED /* data */,
 				CE16BD442A1E7A0500488C24 /* Settings.bundle */,
 				0D8B09EF2A18B709007088DA /* view */,
 				0D8B09EC2A18B6BE007088DA /* viewmodel */,
@@ -144,7 +157,8 @@
 		0D8B09E92A18B684007088DA /* model */ = {
 			isa = PBXGroup;
 			children = (
-				0D8B09EA2A18B695007088DA /* Item.swift */,
+				0D0AA3982A236AF200E9FDED /* ItemModel.xcdatamodeld */,
+				0D9123282A24AA1E00C17609 /* CardInfo.swift */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -298,11 +312,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				0D8B09F32A18B742007088DA /* ItemDetailView.swift in Sources */,
+				0D9123272A23A7FD00C17609 /* DataHandler.swift in Sources */,
 				0D8B09F12A18B720007088DA /* ItemListView.swift in Sources */,
 				0D8B09C22A18B405007088DA /* ContentView.swift in Sources */,
 				0D8B09EE2A18B6DA007088DA /* ItemViewModel.swift in Sources */,
-				0D8B09EB2A18B695007088DA /* Item.swift in Sources */,
+				0D0AA39A2A236AF200E9FDED /* ItemModel.xcdatamodeld in Sources */,
 				0D8B09C02A18B405007088DA /* _3_kelmendiApp.swift in Sources */,
+				0D9123292A24AA1E00C17609 /* CardInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -621,6 +637,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		0D0AA3982A236AF200E9FDED /* ItemModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				0D0AA3992A236AF200E9FDED /* ItemModel.xcdatamodel */,
+			);
+			currentVersion = 0D0AA3992A236AF200E9FDED /* ItemModel.xcdatamodel */;
+			path = ItemModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 0D8B09B42A18B405007088DA /* Project object */;
 }
