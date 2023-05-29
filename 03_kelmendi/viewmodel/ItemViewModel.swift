@@ -9,6 +9,10 @@ import Foundation
 import SwiftUI
 import CoreData
 
+import Foundation
+import SwiftUI
+import CoreData
+
 class ItemViewModel: ObservableObject {
     @Published var cards: [Card] = []
     @Published var isLoading = false
@@ -52,11 +56,11 @@ class ItemViewModel: ObservableObject {
             let response = try decoder.decode(Response<CardInfo>.self, from: jsonData)
             let cardInfos = response.data
 
-            let context = DataHandler.shared.persistentContainer.viewContext
+            let context = dataHandler.persistentContainer.viewContext
 
             var cards: [Card] = []
             for cardInfo in cardInfos {
-                let card = Card(context: context)
+                let card = dataHandler.createItem()
                 card.id = cardInfo.id
 
                 if let imageUris = cardInfo.imageUris, let imageUrl = imageUris["normal"] {
@@ -68,7 +72,7 @@ class ItemViewModel: ObservableObject {
                 cards.append(card)
             }
 
-            try context.save()
+            dataHandler.save()
 
             DispatchQueue.main.async {
                 if cards.isEmpty {
@@ -88,6 +92,8 @@ class ItemViewModel: ObservableObject {
         }
     }
 }
+
+
 
 
 

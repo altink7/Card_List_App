@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ItemListView: View {
-    @ObservedObject var viewModel = ItemViewModel()
+    @EnvironmentObject var viewModel: ItemViewModel
     @AppStorage("ShowImages") private var showImages: Bool = false
     @State private var isURLValid = true
 

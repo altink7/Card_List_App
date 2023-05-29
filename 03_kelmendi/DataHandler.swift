@@ -10,9 +10,9 @@ import CoreData
 
 class DataHandler {
     static let shared = DataHandler()
-    
+
     public let persistentContainer: NSPersistentContainer
-    
+
     init() {
         persistentContainer = NSPersistentContainer(name: "ItemModel")
         persistentContainer.loadPersistentStores { description, error in
@@ -21,7 +21,7 @@ class DataHandler {
             }
         }
     }
-    
+
     func save() {
         let context = persistentContainer.viewContext
         if context.hasChanges {
@@ -32,17 +32,17 @@ class DataHandler {
             }
         }
     }
-    
+
     func delete(_ object: NSManagedObject) {
         let context = persistentContainer.viewContext
         context.delete(object)
         save()
     }
-    
+
     func fetchItems() -> [Card] {
         let context = persistentContainer.viewContext
         let fetchRequest: NSFetchRequest<Card> = Card.fetchRequest()
-        
+
         do {
             let items = try context.fetch(fetchRequest)
             return items
@@ -50,11 +50,12 @@ class DataHandler {
             fatalError("Failed to fetch items from Core Data: \(error)")
         }
     }
-    
+
     func createItem() -> Card {
         let context = persistentContainer.viewContext
         let newItem = Card(context: context)
         return newItem
     }
 }
+
 
